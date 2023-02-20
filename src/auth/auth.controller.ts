@@ -1,5 +1,6 @@
 import { Controller, Post, UseGuards, Request, Res, Body, Get, Param } from '@nestjs/common';
 import { CookieOptions, Response } from 'express';
+import { UserDto } from 'src/users/dto/user.dto';
 import { UsersService } from 'src/users/users.service';
 import { AuthService } from './auth.service';
 import { CheckTokenDto } from './dto/check-token.dto';
@@ -11,34 +12,20 @@ import { LocalAuthGuard } from './gurads/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService, private usersService: UsersService) {
-  }
+  constructor(
+    private readonly authService: AuthService, 
+  ) {}
 
-  private getDomain() {
-    return process.env.MODE == 'prod' ? '.gnzs.ru' : 'localhost';
+  @Post('signup')
+  async signup(@Body() dto: UserDto) {
+    return this.authService.signupUser(dto)
   }
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
   async login(@Request() req, @Res({ passthrough: true }) resp: Response) {
     const { user } = req;
-    const accessToken = this.authService.getJwtAccessToken(user.email);
-
-    const refreshToken = this.authService.getJwtRefreshToken(user.id, user.email);
-    // await this.usersService.setRefreshToken(refreshToken, user.id);
-
-    const cookieConfig: CookieOptions = {
-      domain: this.getDomain(),
-    };
-
-    resp.cookie('gnzs_access_token', accessToken, {
-      ...cookieConfig,
-      maxAge: 1000 * 60 * 60 * 15,
-    });
-    resp.cookie('gnzs_refresh_token', refreshToken, {
-      ...cookieConfig,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    });
+    return this.authService.loginUser(user)
   }
 
   @Post('password-recovery')
@@ -61,12 +48,6 @@ export class AuthController {
   @Post('refresh')
   @UseGuards(JwtRefreshGuard)
   refresh(@Request() req, @Res({ passthrough: true }) resp) {
-    const { user } = req;
-    const accessToken = this.authService.getJwtAccessToken(user.login);
-    resp.cookie('gnzs_access_token', accessToken, {
-      maxAge: 1000 * 60 * 60 * 15,
-      domain: this.getDomain(),
-    });
   }
 
   @Post('get-token')

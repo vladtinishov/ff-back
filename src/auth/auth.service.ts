@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from 'jsonwebtoken';
 import { MailService } from 'src/mail/mail.service';
+import { UserDto } from 'src/users/dto/user.dto';
 import { UsersService } from 'src/users/users.service';
 import { jwtConstants } from './constants';
 import { SendEmailDto } from './dto/send-email.dto';
@@ -13,11 +14,28 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private mailService: MailService,
-
   ) {}
 
+  async signupUser(dto: UserDto) {
+    const user = this.usersService.create(dto)
+
+    const accessToken = this.getJwtAccessToken(user.login);
+
+    return {
+      accessToken,
+    }
+  }
+
+  async loginUser(dto: UserDto) {
+    const accessToken = this.getJwtAccessToken(dto.login);
+
+    return {
+      accessToken,
+    }
+  }
+
   async validateUser(login: string, password: string): Promise<any> {
-    const user = await this.usersService.getByAuthData(login);
+    const user = await this.usersService.getByAuthData({ login, password });
     if (!user) return;
 
     return user;
@@ -84,4 +102,5 @@ export class AuthService {
 
     return payload;
   }
+
 }
