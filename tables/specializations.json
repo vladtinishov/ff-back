@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "IT-Менеджер"
+  },
+  {
+    "id": 2,
+    "name": "FrontEnd Vue.js"
+  },
+  {
+    "id": 3,
+    "name": "BackEnd Nest.js"
+  },
+  {
+    "id": 4,
+    "name": "Дизайнер"
+  },
+  {
+    "id": 5,
+    "name": "Разработчик игр"
+  }
+]

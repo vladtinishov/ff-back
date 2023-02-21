@@ -8,6 +8,8 @@ import { JsonWorkerModule } from './json-worker/json-worker.module';
 import { ApplicationsModule } from './applications/applications.module';
 import { OrdersModule } from './orders/orders.module';
 import { AuthModule } from './auth/auth.module';
+import { AchievementsModule } from './achievements/achievements.module';
+import { SpecializationsModule } from './specializations/specializations.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { AuthModule } from './auth/auth.module';
     ApplicationsModule, 
     OrdersModule,
     AuthModule,
+    AchievementsModule,
+    SpecializationsModule,
   ],
   controllers: [AppController],
 })

@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "orderId": 1,
+    "userId": 1,
+    "isClosed": false,
+    "likes": 4
+  },
+  {
+    "id": 2,
+    "orderId": 1,
+    "userId": 1,
+    "isClosed": true,
+    "likes": 4
+  }
+]

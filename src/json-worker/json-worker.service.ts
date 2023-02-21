@@ -78,4 +78,41 @@ export class JsonWorkerService {
 
     return data
   }
+
+  leftJoin(data: any[], tableName: string, field1: string, field2: string): any[] {
+    const joinableData: any[] = this.getTableData(tableName)
+
+    let res = []
+    data.forEach(row => {
+      const resData = {...row, [tableName]: []}
+      resData[tableName].push(...joinableData.filter(joinableRow => {
+        return row[field1] === joinableRow[field2]
+      }))
+
+      res.push(resData)
+    })
+
+    return res
+  }
+
+  joinMany(data: any[], mainTable: string, serviceTable: string, idField: string, idField2: string) {
+    const serviceData: any[] = this.getTableData(serviceTable)
+    const mainData: any[] = this.getTableData(mainTable)
+    const res = []
+
+    data.forEach(row => {
+      const resData = {...row, [mainTable]: []}
+      serviceData.forEach(serviceRow => {
+        if (row.id === serviceRow[idField]) {
+          resData[mainTable].push(mainData.find(mainRow => {
+            return mainRow.id === serviceRow[idField2]
+          }))
+        }
+      })
+
+      res.push(resData)
+    })
+
+    return res
+  }
 }

@@ -5,12 +5,17 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly service: UsersService) {}
 
-  @Get()
-  get(): string {
-    return this.service.getMany();
+  @Get('/freelancers')
+  getFreelancers() {
+    return this.service.getFreelancers();
   }
 
-  @Get('/{id}')
+  @Get('/freelancers/:id')
+  getOneFreelancer(@Param('id') id: number) {
+    return this.service.getOneFreelancer(id);
+  }
+
+  @Get('/:id')
   getOne(@Param('id') id: number): string {
     return this.service.getOne(id);
   }
