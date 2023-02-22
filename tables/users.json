@@ -1,13 +1,1 @@
-[
-  {
-    "id": 1,
-    "name": "Vladislav",
-    "surname": "Tinishov",
-    "login": "vlad.tinishov",
-    "password": "top",
-    "lang": "ru",
-    "about": "Умный и талантливый разработчик ищет заказ своей мечты",
-    "role": 1,
-    "likes": 0
-  }
-]
+[{"id":1,"name":"Vladislav","surname":"Tinishov","login":"vlad.tinishov","password":"top","lang":"ru","companyName":"TOO Крутой","about":"Умный и талантливый разработчик ищет заказ своей мечты","role":1,"likes":0},{"name":"hello","surname":"world","lang":"ru","login":"asdfasdf","password":"asdfasdf","role":1,"about":"adsfasdf","likes":0},{"name":"asdf","surname":"asdf","lang":"ru","login":"asdf","password":"asdf","role":1,"about":"asdf","likes":0},{"name":"asdf","surname":"asdf","lang":"ru","login":"asdf","password":"asdf","companyName":"","role":1,"about":"asdf","likes":0},{"name":"asdf","surname":"asdf","lang":"ru","login":"asdf","password":"asdf","companyName":"","role":1,"about":"asdf","likes":0},{"name":"rrrr","surname":"rrrrrrr","lang":"ru","login":"rr","password":"rr","companyName":"","about":"rr","likes":0},{"name":"asdf","surname":"adsf","lang":"ru","login":"asdf","password":"asdf","companyName":"","about":"asdf","likes":0},{"name":"","surname":"","companyName":"","likes":0},{"name":"asdf","surname":"asdf","lang":"ru","login":"asdf","password":"asdf","companyName":"","role":1,"about":"asdf","likes":0},{"name":"","surname":"","lang":"ru","login":"asdf","password":"asdf","companyName":"asdf","role":2,"about":"asdf","likes":0},{"name":"","surname":"","lang":"ru","login":"asdfasdf","password":"asdf","companyName":"asdf","role":2,"about":"asdf","likes":0},{"name":"","surname":"","lang":"ru","login":"asdf","password":"asdf","companyName":"asdf","role":2,"about":"asdf","likes":0},{"name":"","surname":"","lang":"ru","login":"asdf","password":"asdf","companyName":"asdf","role":2,"about":"asdf","likes":0},{"name":"","surname":"","lang":"ru","login":"asdf","password":"asdf","companyName":"asdf","role":2,"about":"asdf","likes":0},{"name":"","surname":"","lang":"ru","login":"asdf","password":"asdf","companyName":"asdf","role":2,"about":"asdf","likes":0},{"name":"","surname":"","lang":"ru","login":"asdf","password":"asdf","companyName":"asdf","role":2,"about":"asdf","likes":0}]

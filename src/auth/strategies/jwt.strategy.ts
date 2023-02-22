@@ -4,6 +4,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { jwtConstants } from '../constants';
 import { Request } from 'express';
 import { UsersService } from 'src/users/users.service';
+import { getCookie } from 'src/utils/cookie';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -11,10 +12,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
-          console.log(request.cookies.gnzs_access_token)
-          return request.cookies.gnzs_access_token
-            ? request.cookies.gnzs_access_token
-            : request.headers['x-gnzs-amo-access-token'];
+          return <string>getCookie('ff-access-token', request.headers.cookie);
         },
       ]),
       ignoreExpiration: true,
@@ -23,9 +21,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-    // const user = await this.usersService.getByLogin(payload.login);
-    // if (!user) throw new HttpException('Token is correct but user is not defined', HttpStatus.FORBIDDEN);
+    console.log(payload)
+    const user = await this.usersService.getByLogin(payload.login);
+    if (!user) throw new HttpException('Token is correct but user is not defined', HttpStatus.FORBIDDEN);
 
-    // return { id: user.id, name: user.name, login: user.email, rights: user.access };
+    return user;
   }
 }

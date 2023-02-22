@@ -17,7 +17,19 @@ export class AuthService {
   ) {}
 
   async signupUser(dto: UserDto) {
-    const user = this.usersService.create(dto)
+    const userData: UserDto = {
+      name: dto?.name || '',
+      surname: dto?.surname || '',
+      lang: dto.lang,
+      login: dto.login,
+      password: dto.password,
+      companyName: dto?.companyName || '',
+      role: dto.role,
+      about: dto.about,
+      likes: 0
+    }
+
+    const user = this.usersService.create(userData)
 
     const accessToken = this.getJwtAccessToken(user.login);
 

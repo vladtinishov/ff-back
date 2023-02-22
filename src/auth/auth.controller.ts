@@ -14,6 +14,7 @@ import { LocalAuthGuard } from './gurads/local-auth.guard';
 export class AuthController {
   constructor(
     private readonly authService: AuthService, 
+    private readonly usersService: UsersService, 
   ) {}
 
   @Post('signup')
@@ -41,8 +42,8 @@ export class AuthController {
   @Get('/authorized')
   @UseGuards(JwtAuthGuard)
   async getAuthorizedUser(@Request() req) {
-    // const user: User = await this.usersService.getUserById(req.user.id);
-    // return user;
+    const user: UserDto = this.usersService.getOne(req.user.id);
+    return user;
   }
 
   @Post('refresh')

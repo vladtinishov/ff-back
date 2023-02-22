@@ -44,8 +44,8 @@ export class UsersService {
     return res
   }
 
-  getOne(id: number): string {
-    return this.jsonWorkerService.findOne(TABLE_NAME, { id });
+  getOne(id: number): UserDto {
+    return this.getOneFreelancer(id);
   }
 
   getByAuthData(dto: AuthUserDto) {

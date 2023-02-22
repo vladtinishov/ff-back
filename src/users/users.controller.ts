@@ -1,4 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
+import { UserDto } from './dto/user.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -16,7 +17,7 @@ export class UsersController {
   }
 
   @Get('/:id')
-  getOne(@Param('id') id: number): string {
+  getOne(@Param('id') id: number): UserDto {
     return this.service.getOne(id);
   }
 }

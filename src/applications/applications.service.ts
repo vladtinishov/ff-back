@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards } from '@nestjs/common';
 import { JsonWorkerService } from 'src/json-worker/json-worker.service';
 import { ApplicationDto } from './dto/applications.dto';
 
@@ -18,8 +18,17 @@ export class ApplicationsService {
     return this.jsonWorkerService.findOne(TABLE_NAME, { id });
   }
 
-  create(dto: ApplicationDto) {
+  create(dto: ApplicationDto, userId: number) {
+    dto.userId = userId
     return this.jsonWorkerService.create(TABLE_NAME, dto)
+  }
+
+  edit(dto: ApplicationDto) {
+    return this.jsonWorkerService.edit(TABLE_NAME, dto, { id: dto.id })
+  }
+
+  delete(id: number) {
+    return this.jsonWorkerService.delete(TABLE_NAME, { id })
   }
 
 }

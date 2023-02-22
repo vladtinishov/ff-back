@@ -1,29 +1,27 @@
-export class ApplicationDto {
-  id?: number
-  name: string
-  aboutMe: AboutMeSectionDto
-  specialization: SpecializationSectionDto
-  education: EducationSection
-}
-
-class AboutMeSectionDto {
-  name: string
-  surname: string
-  phone: string
-  email: string
-  langs: string[]
-  city: string
-  skills: string[]
-}
-
-class SpecializationSectionDto {
-  specializationId: number
-  hasExperience: boolean
-  previusTasks: string[]
-}
-
-class EducationSection {
-  name: string
-  grade: string
-  specialization: string
+export interface ApplicationDto {
+  id: number
+  userId: number
+  isFavorite: boolean,
+  isActive: boolean,
+  name: string,
+  surname: string,
+  phone: string,
+  email: string,
+  langs: string[],
+  specializationid: number
+  expiriences: {
+    authorName: string,
+    task: string
+  }[],
+  hasExpirience: boolean
+  specialization?: {
+    name: string
+    id: number
+  }
+  skills: string[],
+  education: {
+    name: string,
+    grade: string,
+    specialization: string
+  }
 }

@@ -1,12 +1,1 @@
-[
-  {
-    "userId": 1,
-    "specializationid": 1,
-    "expiriences": [
-      "нужно было что=то делать и я делал",
-      "нужно было что=то делать и я делал",
-      "нужно было что=то делать и я делал"
-    ],
-    "hasExpirience": true
-  }
-]
+[{"name":"vladislav","surname":"tinishov","education":{"grade":"asdf","name":"asdf","specialization":"asdf"},"email":"asdf","expiriences":[{"authorName":"asdf","task":"asdf"}],"hasExpirience":true,"isActive":true,"isFavorite":false,"langs":["ru"],"phone":"asdf","skills":["asdf"],"specializationid":3,"userId":1,"id":1}]

@@ -61,19 +61,53 @@ export class JsonWorkerService {
     })
   }
 
+  delete(tableName: string, criteria: Record<string, any>) {
+    const data = this.getTableData(tableName)
+
+    if (!data) return false
+
+    const res = data.filter((row: any) => {
+      for (const field in criteria) {
+        if (row[field] !== criteria[field]) return true
+      }
+
+      return false
+    })
+
+    this.writeFile(tableName, res)
+  }
+
   create(tableName: string, dto: Record<string, any>) {
     const data = this.getTableData(tableName)
     let lastId = 0
 
     if (data.length) {
-      lastId = data.reduce((a: any, b: any) => Math.max(a.id, b.id), -Infinity);
+      lastId = data[data.length - 1].id
     }
     
     if (!data) return false
 
-    data.id = lastId + 1
+    dto.id = lastId + 1
     data.push(dto)
 
+    this.writeFile(tableName, data)
+
+    return data
+  }
+
+  edit(tableName: string, dto: Record<string, any>, criteria: Record<string, any>) {
+    const data = this.getTableData(tableName)
+    if (!data) return false
+    
+    const index = data.findIndex(row => {
+      for (const field in criteria) {
+        if (row[field] !== criteria[field]) return false
+      }
+
+      return true
+    });
+
+    data[index] = dto
     this.writeFile(tableName, data)
 
     return data
