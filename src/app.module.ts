@@ -10,6 +10,10 @@ import { OrdersModule } from './orders/orders.module';
 import { AuthModule } from './auth/auth.module';
 import { AchievementsModule } from './achievements/achievements.module';
 import { SpecializationsModule } from './specializations/specializations.module';
+import { FilesModule } from './files/files.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -26,6 +30,13 @@ import { SpecializationsModule } from './specializations/specializations.module'
     AuthModule,
     AchievementsModule,
     SpecializationsModule,
+    FilesModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploaded-files')
+    }),
+    MulterModule.register({
+      dest: './uploaded-files',
+    }),
   ],
   controllers: [AppController],
 })

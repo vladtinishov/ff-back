@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Request, Res, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, Res, Body, Get, Param, Patch } from '@nestjs/common';
 import { CookieOptions, Response } from 'express';
 import { UserDto } from 'src/users/dto/user.dto';
 import { UsersService } from 'src/users/users.service';
@@ -59,5 +59,11 @@ export class AuthController {
   @Post('check-token')
   async checkToken(@Body() data: CheckTokenDto) {
     return await this.authService.getUserByHash(data.hash);
+  }
+
+  
+  @Patch()
+  edit(@Body() dto: UserDto): UserDto {
+    return this.authService.edit(dto);
   }
 }

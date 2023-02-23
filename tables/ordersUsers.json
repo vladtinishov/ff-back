@@ -1,16 +1,1 @@
-[
-  {
-    "id": 1,
-    "orderId": 1,
-    "userId": 1,
-    "isClosed": false,
-    "likes": 4
-  },
-  {
-    "id": 2,
-    "orderId": 1,
-    "userId": 1,
-    "isClosed": true,
-    "likes": 4
-  }
-]
+[{"isApproved":false,"isApprovedByFreelancer":true,"isClosed":false,"likes":0,"orderId":2,"userId":1,"id":1}]

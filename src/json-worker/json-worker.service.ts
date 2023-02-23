@@ -117,6 +117,8 @@ export class JsonWorkerService {
     const joinableData: any[] = this.getTableData(tableName)
 
     let res = []
+
+    if (!data.length) return []
     data.forEach(row => {
       const resData = {...row, [tableName]: []}
       resData[tableName].push(...joinableData.filter(joinableRow => {

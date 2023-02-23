@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from 'jsonwebtoken';
+import { JsonWorkerService } from 'src/json-worker/json-worker.service';
 import { MailService } from 'src/mail/mail.service';
 import { UserDto } from 'src/users/dto/user.dto';
 import { UsersService } from 'src/users/users.service';
@@ -8,12 +9,16 @@ import { jwtConstants } from './constants';
 import { SendEmailDto } from './dto/send-email.dto';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 
+const TABLE_NAME = 'users'
+
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
     private mailService: MailService,
+    private readonly jsonWorkerService: JsonWorkerService,
+
   ) {}
 
   async signupUser(dto: UserDto) {
@@ -51,6 +56,10 @@ export class AuthService {
     if (!user) return;
 
     return user;
+  }
+
+  edit(dto: UserDto) {
+    return this.jsonWorkerService.edit(TABLE_NAME, dto, { id: dto.id })
   }
 
   getJwtAccessToken(login: string) {

@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Request } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
 import { UsersService } from './users.service';
 
@@ -14,6 +14,11 @@ export class UsersController {
   @Get('/freelancers/:id')
   getOneFreelancer(@Param('id') id: number) {
     return this.service.getOneFreelancer(id);
+  }
+
+  @Get('/freelancers/by-order/:id')
+  getFreelancersByOrderId(@Param('id') orderId: number) {
+    return this.service.getFreelancersByOrderId(orderId);
   }
 
   @Get('/:id')
