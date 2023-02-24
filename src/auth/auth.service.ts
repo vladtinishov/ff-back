@@ -27,6 +27,7 @@ export class AuthService {
       surname: dto?.surname || '',
       lang: dto.lang,
       login: dto.login,
+      isNewMode: false,
       password: dto.password,
       companyName: dto?.companyName || '',
       role: dto.role,
@@ -36,7 +37,7 @@ export class AuthService {
 
     const user = this.usersService.create(userData)
 
-    const accessToken = this.getJwtAccessToken(user.login);
+    const accessToken = this.getJwtAccessToken(userData.login);
 
     return {
       accessToken,
@@ -60,6 +61,12 @@ export class AuthService {
 
   edit(dto: UserDto) {
     return this.jsonWorkerService.edit(TABLE_NAME, dto, { id: dto.id })
+  }
+
+  setNewMode(userId: number) {
+    const user = this.jsonWorkerService.findOne(TABLE_NAME, { id: userId })
+    user.isNewMode = true
+    return this.jsonWorkerService.edit(TABLE_NAME, user, { id: userId })
   }
 
   getJwtAccessToken(login: string) {

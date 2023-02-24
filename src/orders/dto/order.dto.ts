@@ -5,6 +5,7 @@ export class OrderDto {
   customerId: number
   users: UserDto[]
   ordersUsers: OrderUserDto[]
+  specializationId: number
   task: string
   isTaked: boolean
   content: string

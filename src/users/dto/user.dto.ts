@@ -11,6 +11,7 @@ export interface UserDto {
   password: string
   lang: string
   about: string
+  isNewMode: boolean
   role: number
   likes: number
   achievements?: AchievementsDto[]

@@ -66,4 +66,10 @@ export class AuthController {
   edit(@Body() dto: UserDto): UserDto {
     return this.authService.edit(dto);
   }
+  
+  @Patch('/set-new-mode')
+  @UseGuards(JwtAuthGuard)
+  setNewMode(@Request() req): UserDto {
+    return this.authService.setNewMode(req.user.id);
+  }
 }
